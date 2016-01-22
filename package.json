@@ -1,0 +1,30 @@
+{
+  "name": "picture-uploader",
+  "version": "0.0.0",
+  "main": "server/app.js",
+  "dependencies": {
+    "body-parser": "~1.5.0",
+    "bower": "^1.4.1",
+    "errorhandler": "~1.0.0",
+    "express": "~4.0.0",
+    "lodash": "~2.4.1",
+    "morgan": "~1.0.0",
+    "multiparty": "^4.1.1",
+    "request": "^2.55.0",
+    "sendgrid": "^1.6.1",
+    "serve-favicon": "~2.0.1"
+  },
+  "devDependencies": {
+    "nock": "^1.6.0",
+    "should": "~3.3.1",
+    "supertest": "~0.11.0"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "scripts": {
+    "start": "node ./server/app.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
+  },
+  "private": true
+}

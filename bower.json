@@ -1,0 +1,8 @@
+{
+  "name": "picture-uploader",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": ">=1.2.*",
+    "jquery": "~1.11.0"
+  }
+}

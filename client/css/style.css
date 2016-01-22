@@ -1,0 +1,18 @@
+style.css
+
+body {
+
+}
+
+h1,.h1{
+	font-family: 'Raleway', sans-serif;
+    color:#009999;
+    font-weight:900;
+}
+
+.starter-template {
+	font-family: 'Raleway', sans-serif;
+	color:#009999;
+	padding:30px 15px 40px 15px;
+	text-align:center;
+}

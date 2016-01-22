@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Quentin">
+	<title>MY FORM - Camelia Tech</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+  </head>
+  <body ng-app="pictureUploaderApp">
+      
+      <!-- FORM
+================================================== -->
+	<meta id="microadditionalType" itemprop="additionalType" content="Form" />
+	<section id="form">
+	<div class="container">
+		<div class="starter-template">
+
+	        <h1>MY FORM - Camelia Tech</h1>
+	        <br/>
+			<div class="row">
+		        <div class="col-md-offset-3 col-md-3">
+		        	<img src="images/default-logo.jpg" alt="default-logo">
+		        	<form method="post" action=#image-upload>
+		        		<i class="glyphicon glyphicon-chevron-up"></i>
+		        		<p>Upload your picture</p>
+		        	</form>
+		        </div>
+		        <div class="col-md-3" ng-controller="InformationsListController">
+			        <form ng-submit="addInfo(user)">
+		  					<div>
+		       					<input type="text" ng-model="user.firstName"  size="30" placeholder="First Name">
+		       				</div>
+			       			<div>
+			       				<input type="text" ng-model="user.lastName"  size="30" placeholder="Last Name">
+			       			</div>
+			       			<div>
+			       				<input type="text" ng-model="user.email"  size="30" placeholder="Email">
+			       			</div>
+			       				<input class="btn-primary" type="submit" value="Go">		       	
+					</form>
+					<span>{{users.length}} remaining</span>		
+			    </div>
+			</div>
+		</div>
+	</div>
+	</section>
+      <script src="bower_components/jquery/dist/jquery.min.js"></script>
+      <script src="bower_components/angular/angular.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+      <script src="app.js"></script>
+  </body>
+</html>
