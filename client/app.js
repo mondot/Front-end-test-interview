@@ -36,37 +36,37 @@ angular.module('pictureUploaderApp', [])
 
 	}])
 
-	// .directive('fileModel', ['$parse', function ($parse) {
-	//     return {
-	//         restrict: 'A',
-	//         link: function(scope, element, attrs) {
-	//             var model = $parse(attrs.fileModel);
-	//             var modelSetter = model.assign;
+	.directive('fileModel', ['$parse', function ($parse) {
+	    return {
+	        restrict: 'A',
+	        link: function(scope, element, attrs) {
+	            var model = $parse(attrs.fileModel);
+	            var modelSetter = model.assign;
 	            
-	//             element.bind('change', function(){
-	//                 scope.$apply(function(){
-	//                     modelSetter(scope, element[0].files[0]);
-	//                 });
-	//             });
-	//         }
-	//     };
-	// }])
+	            element.bind('change', function(){
+	                scope.$apply(function(){
+	                    modelSetter(scope, element[0].files[0]);
+	                });
+	            });
+	        }
+	    };
+	}])
 
-	// .controller('UploadFileController', ['$scope', function($scope) {
+	.controller('UploadFileController', ['$scope', function($scope) {
 
-	// 	$scope.addFile = function() { 
-	// 			var file = $scope.myFile;
-	// 			console.log('file is ' );
- //        console.dir(file);
- //        debugger
-	// 			$.ajax({type: 'POST',url: '/api/user/picture',headers: {'Content-Type': undefined},data: {file: file}})
-	// 				.done(function(){
-	// 					debugger
-	// 					window.alert("Your profile has been created.");
-	// 				})
-	// 				.fail(function(){ 
-	// 					window.alert("Server answered back : Error");
-	// 				})
-	//   };
+		$scope.addFile = function() { 
+				var file = $scope.myFile;
+				console.log('file is ' );
+        console.dir(file);
+        debugger
+				$.ajax({type: 'POST',url: '/api/user/picture',headers: {'Content-Type': undefined},transformRequest: function (data) { return new FormData().append('file', data.file); },data: {file: file}})
+					.done(function(){
+						debugger
+						window.alert("Your profile has been created.");
+					})
+					.fail(function(){ 
+						window.alert("Server answered back : Error");
+					})
+	  };
 
-	// }]);
+	}]);
