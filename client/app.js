@@ -12,9 +12,9 @@ var isUserValid = function(user) {
 }
 
 
-angular.module('pictureUploaderApp', [])
+var pictureUploaderApp = angular.module('pictureUploaderApp', []);
 
-	.controller('AddInfoController', ['$scope', function($scope) {
+	pictureUploaderApp.controller('AddInfoController', ['$scope', function($scope) {
     $scope.users = users;
   	$scope.addInfo = function(user) {
   		if (isUserValid(user) && isEmailValid(user)) {
@@ -34,9 +34,9 @@ angular.module('pictureUploaderApp', [])
   		}
     };
 
-	}])
-
-	.directive('fileModel', ['$parse', function ($parse) {
+	}]);
+	
+	pictureUploaderApp.directive('fileModel', ['$parse', function ($parse) {
 	    return {
 	        restrict: 'A',
 	        link: function(scope, element, attrs) {
@@ -50,23 +50,70 @@ angular.module('pictureUploaderApp', [])
 	            });
 	        }
 	    };
-	}])
-
-	.controller('UploadFileController', ['$scope', function($scope) {
-
-		$scope.addFile = function() { 
-				var file = $scope.myFile;
-				console.log('file is ' );
-        console.dir(file);
-        debugger
-				$.ajax({type: 'POST',url: '/api/user/picture',headers: {'Content-Type': undefined},transformRequest: function (data) { return new FormData().append('file', data.file); },data: {file: file}})
-					.done(function(){
-						debugger
-						window.alert("Your profile has been created.");
-					})
-					.fail(function(){ 
-						window.alert("Server answered back : Error");
-					})
-	  };
-
 	}]);
+
+	pictureUploaderApp.service('fileUpload', ['$http', function ($http) {
+	    this.uploadFileToUrl = function(file, uploadUrl){
+	        var fd = new FormData();
+	        fd.append('file', file);
+	        debugger
+	        $http.post(uploadUrl, fd, {
+	            transformRequest: angular.identity,
+	            headers: {'Content-Type': undefined}
+	        })
+	        .success(function(){
+	        	console.log('yes');
+	        })
+	        .error(function(){
+	        	console.log('hoo');
+	        });
+	    }
+	}]);
+
+	pictureUploaderApp.controller('UploadFileController', ['$scope', 'fileUpload', function($scope, fileUpload){
+	    
+	    $scope.uploadFile = function(){
+	        var file = $scope.myFile;
+	        console.log('file is ' );
+	        console.dir(file);
+	        debugger
+	        var uploadUrl = "/api/user/picture";
+	        fileUpload.uploadFileToUrl(file, uploadUrl);
+	    };
+	    
+	}]);
+
+	// .directive('fileModel', ['$parse', function ($parse) {
+	//     return {
+	//         restrict: 'A',
+	//         link: function(scope, element, attrs) {
+	//             var model = $parse(attrs.fileModel);
+	//             var modelSetter = model.assign;
+	            
+	//             element.bind('change', function(){
+	//                 scope.$apply(function(){
+	//                     modelSetter(scope, element[0].files[0]);
+	//                 });
+	//             });
+	//         }
+	//     };
+	// }])
+
+	// .controller('UploadFileController', ['$scope', function($scope) {
+
+	// 	$scope.addFile = function() { 
+	// 			var file = $scope.myFile;
+	// 			console.log('file is ' );
+ //        console.dir(file);
+ //        debugger
+	// 			$.ajax({type: 'POST',url: '/api/user/picture',headers: {'Content-Type': undefined},transformRequest: function (data) { return new FormData().append('file', data.file); },data: {file: file}})
+	// 				.done(function(){
+	// 					debugger
+	// 					window.alert("Your profile has been created.");
+	// 				})
+	// 				.fail(function(){ 
+	// 					window.alert("Server answered back : Error");
+	// 				})
+	//   };
+
+	// }]);
