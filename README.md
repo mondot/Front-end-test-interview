@@ -50,5 +50,5 @@ Calls with the following params
 
 Returns
 
- - 406 if the picture contains faces
+ - 406 if the picture doesn't contain faces
  - 201 if the picture contains faces
