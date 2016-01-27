@@ -16,3 +16,7 @@ h1,.h1{
 	padding:30px 15px 40px 15px;
 	text-align:center;
 }
+
+#upload-file-container input {
+   display: none;
+}
