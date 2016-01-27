@@ -70,7 +70,7 @@ var pictureUploaderApp = angular.module('pictureUploaderApp', []);
 	    			window.alert("Your profile has been updated.");
 	    		})
 	    		.error(function(){
-	    			window.alert("Server answered back : no face detected. Please use a profil picture with a face.");
+	    			window.alert("Server answered back : no face detected. Please use a profile picture with a face.");
 	    		});
 	    	}
 
