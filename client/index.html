@@ -40,17 +40,28 @@
 
 		        </div>
 		        <div class="col-md-3" ng-controller="AddInfoController">
-			        <form ng-submit="addInfo(user)">
-		  					<div>
-		       					<input type="text" ng-model="user.firstName"  size="30" placeholder="First Name"/>
-		       				</div>
-			       			<div>
-			       				<input type="text" ng-model="user.lastName"  size="30" placeholder="Last Name"/>
-			       			</div>
-			       			<div>
-			       				<input type="email" ng-model="user.email"  size="30" placeholder="Email"/>
-			       			</div>
-			       				<input class="btn-primary" type="submit" value="Go">		       	
+
+			        <form name="userForm" ng-submit="addInfo(user)" novalidate>
+
+			        	<!-- FIRST NAME -->
+		  					<div class="form-group" ng-class="{ 'has-error' : userForm.firstName.$invalid && userForm.firstName.$touched }">
+		       				<input type="text" name="firstName" class="form-control" ng-model="user.firstName"  size="30" placeholder="First Name" required/>
+		       				<p ng-show="userForm.firstName.$invalid && userForm.firstName.$touched" class="help-block">Your first name is required.</p>
+		       			</div>
+
+		       			<!-- LAST NAME -->
+			       		<div class="form-group" ng-class="{ 'has-error' : userForm.lastName.$invalid && userForm.firstName.$touched }">
+		       				<input type="text" name="lastName" class="form-control" ng-model="user.lastName"  size="30" placeholder="Last Name" required/>
+		       				<p ng-show="userForm.lastName.$invalid && userForm.lastName.$touched" class="help-block">Your last name is required.</p>
+		       			</div>
+
+			       		<!-- EMAIL -->
+			       		<div class="form-group" ng-class="{ 'has-error' : userForm.lastName.$invalid && userForm.firstName.$touched }">
+			       			<input type="email" name="email" class="form-control" ng-model="user.email"  size="30" placeholder="Email" required/>
+			       			<p ng-show="userForm.email.$invalid && userForm.email.$touched" class="help-block">Enter a valid email.</p>
+			       		</div>
+
+			       			<button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>		       	
 							</form>
 										<span>{{users.length}} remaining</span>		
 			    	</div>

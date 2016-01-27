@@ -35,7 +35,7 @@ var pictureUploaderApp = angular.module('pictureUploaderApp', []);
   		}
 
   		else {
-  			window.alert("Please verify your inputs.");
+  			window.alert("Please verify your email.");
   		}
     };
 
