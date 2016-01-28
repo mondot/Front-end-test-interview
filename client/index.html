@@ -40,8 +40,8 @@
 		        		
 		        		<div class="row">
 <!-- 									<i class="glyphicon glyphicon-chevron-up"></i>-->
-									<label for="fileID" ng-show="!fileForm.$dirty">Choose your picture</label>
-									<button type="submit" ng-show="fileForm.$dirty">Upload your picture</button>		 
+									<label for="fileID" ng-show="!fileForm.$dirty && !fileForm.$pristine">Upload your picture</label>
+									<button type="submit" ng-show="fileForm.$dirty">Update profile</button>		 
 								</div>
 		        	</form>
 
@@ -71,7 +71,7 @@
 			       		</div>
 
 			       		<!-- SUBMIT -->
-			       			<button type="submit" ng-disabled="userForm.$invalid">Submit</button>		       	
+			       			<button type="submit" ng-disabled="userForm.$invalid">Create profile</button>		       	
 							</form>
 												
 			    	</div>

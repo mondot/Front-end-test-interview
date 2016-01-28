@@ -1,9 +1,5 @@
 style.css
 
-body {
-
-}
-
 h1,.h1{
 	font-family: 'Raleway', sans-serif;
     color:#009999;
@@ -19,4 +15,11 @@ h1,.h1{
 
 #upload-file-container input {
    display: none;
+}
+
+input:focus { 
+    background-image: url(../images/ico-form-pin.svg);
+    background-repeat: no-repeat;
+    background-position: 4px;
+    padding-left: 30px;
 }

@@ -53,9 +53,13 @@ var pictureUploaderApp = angular.module('pictureUploaderApp', []);
   			$.ajax({type: 'POST',url: '/api/user',data: user,async: false,cache: false})
   				.done(function(){
   					$scope.users.push(user);
-  					$scope.user = {};
-  					window.alert("Your profile has been created.");
+  					window.alert("Your profile has been successfully created. \nNow upload your picture, \nWe want to see your face on it :)");
   					$scope.userForm.$setUntouched();
+
+  					var controllerElement = document.querySelector('#upload-file-container');
+						var controllerScope = angular.element(controllerElement).scope();
+						controllerScope.fileForm.$pristine = false;
+
   				})
   				.fail(function(){ 
   					window.alert("Server answered back : Error");
@@ -98,10 +102,10 @@ var pictureUploaderApp = angular.module('pictureUploaderApp', []);
 	    		.success(function(){
 	        	$scope.files.push(file);
   					$scope.file = {};
-	    			window.alert("Your profile has been updated.");
+	    			window.alert("Nice face! \nYour profile has been successfully updated.");
 	    		})
 	    		.error(function(){
-	    			window.alert("Server answered back : no face detected. Please use a profile picture with a face.");
+	    			window.alert("No face detected. \nPlease use a profile picture with a face.");
 	    		});
 	    	}
 
