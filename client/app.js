@@ -1,6 +1,7 @@
 'use strict';
 
 var users = [];
+var files = [];
 
 // VALIDATIONS
 var isEmailValid = function(user) {
@@ -35,7 +36,7 @@ function readURL(input) {
 
 $("#fileID").change(function(){
     readURL(this);
-    console.log("here");
+
     var controllerElement = document.querySelector('#upload-file-container');
 		var controllerScope = angular.element(controllerElement).scope();
 		controllerScope.fileForm.$dirty = true;
@@ -52,7 +53,7 @@ var pictureUploaderApp = angular.module('pictureUploaderApp', []);
   			$.ajax({type: 'POST',url: '/api/user',data: user,async: false,cache: false})
   				.done(function(){
   					$scope.users.push(user);
-  					$scope.user = {}
+  					$scope.user = {};
   					window.alert("Your profile has been created.");
   					$scope.userForm.$setUntouched();
   				})
@@ -85,8 +86,9 @@ var pictureUploaderApp = angular.module('pictureUploaderApp', []);
 	}]);
 
 	pictureUploaderApp.service('fileUpload', ['$http', function ($http) {
-	    this.uploadFileToUrl = function(file, uploadUrl){
+	    this.uploadFileToUrl = function(file, uploadUrl,$scope){
 	    	if (isFileValid('fileID')){
+	    		$scope.files = files;
 	    		var fd = new FormData();
 	    		fd.append('file', file);
 	    		$http.post(uploadUrl, fd, {
@@ -94,6 +96,8 @@ var pictureUploaderApp = angular.module('pictureUploaderApp', []);
 	    		    headers: {'Content-Type': undefined}
 	    		})
 	    		.success(function(){
+	        	$scope.files.push(file);
+  					$scope.file = {};
 	    			window.alert("Your profile has been updated.");
 	    		})
 	    		.error(function(){
@@ -108,11 +112,10 @@ var pictureUploaderApp = angular.module('pictureUploaderApp', []);
 	}]);
 
 	pictureUploaderApp.controller('UploadFileController', ['$scope', 'fileUpload', function($scope, fileUpload){
-	    
-	    $scope.uploadFile = function(){
-	        var file = $scope.myFile;
-	        var uploadUrl = "/api/user/picture";
-	        fileUpload.uploadFileToUrl(file, uploadUrl);
+	   	  $scope.uploadFile = function(){
+	      var file = $scope.myFile;
+	      var uploadUrl = "/api/user/picture";
+	      fileUpload.uploadFileToUrl(file, uploadUrl,$scope);
 	    };
 	    
 	}]);
