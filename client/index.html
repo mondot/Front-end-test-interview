@@ -10,8 +10,8 @@
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
   </head>
+  
   <body ng-app="pictureUploaderApp">
       
       <!-- FORM
@@ -31,14 +31,12 @@
 
 		        	<form name="fileForm" ng-submit="uploadFile()"/>
 
-		        		<label for="fileID">
-		        			<img id="picture" src="images/default-logo.jpg" alt"uploadyourpicture" height="103" width="103"/>
-		        		</label>
+		        		<img id="picture" src="images/default-logo.jpg" alt"uploadyourpicture" height="103" width="103"/>
 
 		        		<input type="file" file-model="myFile" id="fileID" accept="image/jpeg, image/png"/>
 		        		
 		        		<div class="row">
-									<i class="glyphicon glyphicon-chevron-up" ng-show="!fileForm.$dirty && !fileForm.$pristine"></i>
+									<label for="fileID"><i class="glyphicon glyphicon-chevron-up" ng-show="!fileForm.$pristine"></i></label>
 									<div>
 									<label for="fileID" ng-show="!fileForm.$dirty && !fileForm.$pristine">Upload your picture</label>
 									<button type="submit" ng-show="fileForm.$dirty">Update profile</button>		
@@ -83,7 +81,7 @@
 
 							<!-- SUCCESS MESSAGE -->
 							<br/>
-							<div class="alert alert-success" ng-show="showSuccessAlert">
+							<div class="alert alert-success" ng-show="showSuccessAlert" id="success-alert">
 							  <button type="button" class="close" data-ng-click="switchBool('showSuccessAlert')">×</button>{{successTextAlert}}
 							</div>
 												
