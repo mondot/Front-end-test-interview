@@ -29,7 +29,7 @@
 						<!-- UPLOADFILE -->
 		        <div class="col-md-offset-3 col-md-3" ng-controller="UploadFileController" id="upload-file-container">
 
-		        	<form ng-submit="uploadFile()"/>
+		        	<form name="fileForm" ng-submit="uploadFile()"/>
 
 		        		<label for="fileID">
 		        			<img id="picture" src="images/default-logo.jpg" alt"uploadyourpicture" height="103" width="103"/>
@@ -40,7 +40,7 @@
 		        		
 		        		<div class="row">
 <!-- 									<i class="glyphicon glyphicon-chevron-up"></i>-->
-									<button class="btn btn-primary" type="submit">Upload your picture</button>		 
+									<button class="btn btn-primary" type="submit" ng-show="fileForm.$dirty">Upload your picture</button>		 
 								</div>
 		        	</form>
 

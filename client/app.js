@@ -35,6 +35,10 @@ function readURL(input) {
 
 $("#fileID").change(function(){
     readURL(this);
+    console.log("here");
+    var controllerElement = document.querySelector('#upload-file-container');
+		var controllerScope = angular.element(controllerElement).scope();
+		controllerScope.fileForm.$dirty = true;
 });
 
 // ANGULAR MODULE
@@ -107,8 +111,6 @@ var pictureUploaderApp = angular.module('pictureUploaderApp', []);
 	    
 	    $scope.uploadFile = function(){
 	        var file = $scope.myFile;
-	        console.log('file is ' );
-	        console.dir(file);
 	        var uploadUrl = "/api/user/picture";
 	        fileUpload.uploadFileToUrl(file, uploadUrl);
 	    };
