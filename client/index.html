@@ -29,13 +29,14 @@
 						<!-- UPLOADFILE -->
 		        <div class="col-md-offset-3 col-md-3" ng-controller="UploadFileController" id="upload-file-container">
 
-		        	<form ng-submit="uploadFile()">
+		        	<form ng-submit="uploadFile()"/>
 
 		        		<label for="fileID">
 		        			<img id="picture" src="images/default-logo.jpg" alt"uploadyourpicture" height="103" width="103"/>
 		        		</label>
 
 		        		<input type="file" file-model="myFile" id="fileID" accept="image/jpeg, image/png"/>
+		        		<!-- required doesn't work on an input [file] -->
 		        		
 		        		<div class="row">
 <!-- 									<i class="glyphicon glyphicon-chevron-up"></i>-->
@@ -68,6 +69,7 @@
 			       			<p ng-show="userForm.email.$invalid && userForm.email.$touched" class="help-block">Enter a valid email.</p>
 			       		</div>
 
+			       		<!-- SUBMIT -->
 			       			<button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>		       	
 							</form>
 										<span>{{users.length}} remaining</span>		

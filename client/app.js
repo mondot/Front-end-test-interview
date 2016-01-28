@@ -13,7 +13,7 @@ var isUserValid = function(user) {
 }
 
 var isFileValid = function(fileID) {
-		var exts = ['.jpg', '.jpeg', '.png'];
+		var exts = ['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG'];
     var fileName = document.getElementById(fileID).value;
     return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
 }
@@ -50,6 +50,7 @@ var pictureUploaderApp = angular.module('pictureUploaderApp', []);
   					$scope.users.push(user);
   					$scope.user = {}
   					window.alert("Your profile has been created.");
+  					$scope.userForm.$setUntouched();
   				})
   				.fail(function(){ 
   					window.alert("Server answered back : Error");
