@@ -18,7 +18,7 @@ var isFileValid = function(fileID) {
     return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
 }
 
-// PREVIEW OF THE FILE CHOSEN
+// PREVIEW OF THE FILE CHOSEN AND DISPLAY OF THE SUBMIT BUTTON
 
 function readURL(input) {
 
