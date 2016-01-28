@@ -53,7 +53,11 @@ var pictureUploaderApp = angular.module('pictureUploaderApp', []);
   			$.ajax({type: 'POST',url: '/api/user',data: user,async: false,cache: false})
   				.done(function(){
   					$scope.users.push(user);
-  					window.alert("Your profile has been successfully created. \nNow upload your picture, \nWe want to see your face on it :)");
+  					$scope.successTextAlert = "Your profile has been successfully created. \nNow upload your picture, \nWe want to see your face on it :)";
+    				$scope.showSuccessAlert = true;
+    				$scope.switchBool = function (value) {
+    				        $scope[value] = !$scope[value];
+    				    	};
   					$scope.userForm.$setUntouched();
 
   					var controllerElement = document.querySelector('#upload-file-container');
@@ -102,7 +106,11 @@ var pictureUploaderApp = angular.module('pictureUploaderApp', []);
 	    		.success(function(){
 	        	$scope.files.push(file);
   					$scope.file = {};
-	    			window.alert("Nice face! \nYour profile has been successfully updated.");
+  					$scope.successTextAlert = "Nice face! \nYour profile has been successfully updated.";
+    				$scope.showSuccessAlert = true;
+    				$scope.switchBool = function (value) {
+    				        $scope[value] = !$scope[value];
+    				    	};
 	    		})
 	    		.error(function(){
 	    			window.alert("No face detected. \nPlease use a profile picture with a face.");

@@ -36,14 +36,21 @@
 		        		</label>
 
 		        		<input type="file" file-model="myFile" id="fileID" accept="image/jpeg, image/png"/>
-		        		<!-- required doesn't work on an input [file] -->
 		        		
 		        		<div class="row">
-<!-- 									<i class="glyphicon glyphicon-chevron-up"></i>-->
+									<i class="glyphicon glyphicon-chevron-up" ng-show="!fileForm.$dirty && !fileForm.$pristine"></i>
+									<div>
 									<label for="fileID" ng-show="!fileForm.$dirty && !fileForm.$pristine">Upload your picture</label>
-									<button type="submit" ng-show="fileForm.$dirty">Update profile</button>		 
+									<button type="submit" ng-show="fileForm.$dirty">Update profile</button>		
+									</div> 
 								</div>
 		        	</form>
+
+		        	<!-- SUCCESS MESSAGE -->
+		        	<br/>
+		        	<div class="alert alert-success" ng-show="showSuccessAlert">
+		        	  <button type="button" class="close" data-ng-click="switchBool('showSuccessAlert')">×</button>{{successTextAlert}}
+		        	</div>
 
 		        </div>
 
@@ -71,8 +78,14 @@
 			       		</div>
 
 			       		<!-- SUBMIT -->
-			       			<button type="submit" ng-disabled="userForm.$invalid">Create profile</button>		       	
+			       			<button type="submit" ng-disabled="userForm.$invalid">Create profile</button>
 							</form>
+
+							<!-- SUCCESS MESSAGE -->
+							<br/>
+							<div class="alert alert-success" ng-show="showSuccessAlert">
+							  <button type="button" class="close" data-ng-click="switchBool('showSuccessAlert')">×</button>{{successTextAlert}}
+							</div>
 												
 			    	</div>
 			</div>
