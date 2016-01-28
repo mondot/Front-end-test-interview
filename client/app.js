@@ -2,6 +2,7 @@
 
 var users = [];
 
+// VALIDATIONS
 var isEmailValid = function(user) {
 		var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(user.email);
@@ -16,6 +17,27 @@ var isFileValid = function(fileID) {
     var fileName = document.getElementById(fileID).value;
     return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
 }
+
+// PREVIEW OF THE FILE CHOSEN
+
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#picture').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#fileID").change(function(){
+    readURL(this);
+});
+
+// ANGULAR MODULE
 
 var pictureUploaderApp = angular.module('pictureUploaderApp', []);
 
